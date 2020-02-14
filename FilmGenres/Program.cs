@@ -11,7 +11,7 @@ namespace FilmGenres
             bool yes = true;
             while (yes)
             {
-                Console.WriteLine("Enter the number below the film options to continue.");
+                Console.WriteLine("\n\tEnter the number below the film options to continue.");
                 Console.WriteLine(" [   1   ]   [  2  ]   [  3  ]    [  4  ]    [  5   ]    [   6   ]");
                 Console.WriteLine("  Animated    Drama     Horror     SciFi     List All     Add New");
                 string input=Console.ReadLine();
@@ -20,29 +20,17 @@ namespace FilmGenres
                     //check for valid input and nav menu options
                     switch(input){
                         case "1":
-                            //list all m in 1
-                            List<Film> anim = new List<Film>
-                            {
-                              new Film("Spirited Away", "Animated"),
-                              new Film("Waking Life", "Animated"),
-                            };
-                            View(anim);
+                            //sends to method for case 1-4 to print matching genre
+                            Find("Animated");
                             break;
                         case "2":
-                            foreach(Film drama in listAll)
-                            {
-                                if (drama.Category == "Drama")
-                                {
-                                Console.WriteLine(drama);
-                                }
-                                 
-                            }
-                           
+                            Find("Drama");
                             break;
                         case "3":
-
+                            Find("Horror");
                             break;
                         case "4":
+                            Find("Scifi");
                             break;
                         case "5":
                             //sends to view format in Film to print public list
@@ -72,10 +60,10 @@ namespace FilmGenres
         //display updated film options to console
         public static void View(List<Film> Genre)
         {
-            Console.WriteLine("\t   Genre\t     Title\n*************************************************");
+            Console.WriteLine("\t Genre\t\t\tTitle\n*************************************************");
             foreach (Film m in Genre)
             {
-                Console.WriteLine(m+"\n-\t-\t-\t-\t-\t-\t-");
+                Console.WriteLine(m + "\n-\t-\t-\t-\t-\t-\t-");
             }
         }
         //sample film list
@@ -83,7 +71,7 @@ namespace FilmGenres
             {
             new Film("Spirited Away", "Animated"),
             new Film("Waking Life", "Animated"),
-            new Film("Eternal Sunshine of the Spotless Mind", "Drama"),
+            new Film("Schindler's List", "Drama"),
             new Film("Pay It Forward", "Drama"),
             new Film("IT", "Horror"),
             new Film("Chucky", "Horror"),
@@ -92,5 +80,21 @@ namespace FilmGenres
             new Film("Back To The Future", "Scifi"),
             new Film("Shawn Of The Dead", "Scifi"),
             };
+
+        //finds films requested by genre from list
+        public static void Find(string type)
+        {
+            //new list sent to Film.view for format
+            List<Film> listType=new List<Film> { };
+
+            foreach (Film genre in listAll)
+            {
+                if (genre.Category == type)
+                {
+                    listType.Add(genre); 
+                }
+            }
+            View(listType);
+        }
     }
 }

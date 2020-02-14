@@ -26,7 +26,7 @@ namespace FilmGenres
         //orders how info is printed
         public override string ToString()
         {
-            return $"|\t{Category}\t|\t{Title}\t|";
+            return $"|\t{Category}\t|\t{Title}\t";
         }
     }
 }
